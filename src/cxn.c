@@ -106,7 +106,7 @@ static int cxn_bind_try(const char *service) {
 	int rc;
 
 	memset(&hints, 0, sizeof(struct addrinfo));
-	hints.ai_family = AF_UNSPEC;
+	hints.ai_family = AF_INET;
 	hints.ai_socktype = SOCK_DGRAM;
 	hints.ai_flags = AI_PASSIVE;
 	rc = getaddrinfo(NULL, service, &hints, &rai);
@@ -162,7 +162,7 @@ static void cxn_disconnect(struct cxn *cxn, int fd) {
 	struct sockaddr_storage addr;
 
 	memset(&addr, 0, sizeof(struct sockaddr_storage));
-	addr.ss_family = AF_UNSPEC;
+	addr.ss_family = AF_INET;
 	if (connect(fd, (const struct sockaddr *) &addr,
 		sizeof(struct sockaddr_storage)) == 0)
 	{
